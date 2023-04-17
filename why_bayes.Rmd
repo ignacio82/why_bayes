@@ -34,7 +34,7 @@ meta() |>
       "Bay Area Tech Economics Seminar Series."
     ),
     url = "https://whybayes.martinez.fyi/why_bayes.html",
-    image = "https://whybayes.martinez.fyi/why_bayes.html/social-card.png",
+    image = "https://whybayes.martinez.fyi/social-card.png",
     image_alt = paste(
       "Bayesian Causal Inference for Data Driven Businesses.", 
       "Bay Area Tech Economics Seminar Series."
