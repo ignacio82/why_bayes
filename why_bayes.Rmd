@@ -1,0 +1,578 @@
+---
+title: "Bayesian Causal Inference for Data Driven Businesses"
+author: "Ignacio Martinez"
+institute: "Google"
+date: "2023/04/20"
+output:
+  xaringan::moon_reader:
+    css: ["default","xaringan-themer.css", "custom.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+      ratio: '16:9'
+    seal: false
+
+---
+
+class: inverse, center, middle
+
+
+# Bayesian Causal Inference for Data Driven Businesses
+## A Bayesian framework for decision making 
+### Ignacio Martinez
+### [whybayes.martinez.fyi](https://whybayes.martinez.fyi)
+#### Bay Area Tech Economics Seminar Series
+#### 2023/04/20
+
+---
+
+class: center, middle, inverse
+
+# Before we start
+## A bit about me and the Econ Team @Google
+
+
+
+---
+
+## A bit about you
+
+<center>
+```{r echo=FALSE, fig.align = 'center', out.height="150%", out.width="65%"}
+knitr::include_url("https://www.mentimeter.com/app/presentation/blzmj791umda1w3tynjr8kr5m77cyaje")
+```
+</center>
+
+---
+
+## My goals for today
+
+1. You feel comfortable asking questions, and openly disagreeing with me.
+
+2. I convince you that:
+  + The lure of incredible certitude is a big problem
+  
+  + Decision-makers should"think in bets"
+  
+  + "Data-scientists"  need to spend a lot more time asking questions before touching any data
+  
+  + "Data-scientists"  should make sure that decision-makers understand that quality of evidence is a continuous, and there is not such thing as a free lunch.
+  
+  + The Bayesian framework is underutilized, and we should not be afraid of using informative priors.
+  
+  + The quality of your presentation is as important as the quality of your analysis
+
+---
+
+class: center, middle, inverse
+
+# Everyone wants to be data-driven
+## What does that mean?
+
+---
+
+## The lure of incredible certitude
+
+.large[
+* The tendency to express great certainty about findings, even when there is a great deal of uncertainty.
+]
+
+--
+
+.large[
+* Strong findings are more likely to lead to good outcomes (publications, promotions, bonus, reputation, etc)
+]
+
+--
+
+.large[
+* Can lead to policymakers making decisions based on false or misleading information
+]
+--
+
+.large[
+* Can discourage pursuing important lines of inquiry that do not have clear-cut answers
+]
+
+.footnote[
+\* [Manski, C. F. (2020). The lure of incredible certitude. Economics & Philosophy, 36(2), 216-245.](https://www.cambridge.org/core/journals/economics-and-philosophy/article/abs/lure-of-incredible-certitude/A1F09783377B05F20B83543CD40C7639)
+]
+
+---
+
+## Thinking in bets
+
+.large[
+* We should all think of our decisions as bets
+
+* We should focus on improving our odds of success, rather than trying to predict the future with certainty.
+
+* Beware of hindsight bias, confirmation bias, and anchoring bias
+
+]
+
+.footnote[
+\* [Duke, A. (2019). Thinking in bets: Making smarter decisions when you don't have all the facts. Penguin.](https://www.google.com/books/edition/Thinking_in_Bets/CI-RDwAAQBAJ?hl=en&gbpv=1&dq=+%22thinking+in+bets%22++by+Annie+Duke+&pg=PA1&printsec=frontcover)
+]
+
+???
+
+* Hindsight bias is the tendency to see past events as having been more predictable than they actually were. This bias can lead us to overestimate our ability to predict the future.
+
+* Confirmation bias is the tendency to seek out information that confirms our existing beliefs, and to ignore or discount information that contradicts our beliefs. This bias can lead us to make poor decisions, because we are not considering all of the available information.
+
+* Anchoring bias is the tendency to rely too heavily on the first piece of information we receive, and to use that information as a starting point for making decisions. This bias can lead us to make poor decisions, because we are not considering all of the available information.
+
+**Here are some examples of each bias:**
+
+* Hindsight bias: After a major sporting event, people often say that they "knew" the winning team would win. However, in reality, they were just as likely to have predicted the losing team would win.
+
+* Confirmation bias: A person who believes that vaccines cause autism may only seek out information that supports that belief, and may ignore or discount information that contradicts it.
+
+* Anchoring bias: A person who is asked to estimate the value of a car may be influenced by the first price they hear, even if that price is far from the actual value of the car.
+
+
+---
+
+## Some questions that people asks us
+
+<!---- This is a macro for Mathjax ----->
+$$\newcommand\dollars{\$}$$
+<!---- --------------------------- ----->
+
+.large[
+
+1. Does a new launch meaningfully moves the needle? 
+
+2. Is the ROI of a given investment high enough to justify that investment?
+
+3. How likely it is that the ROI of investing $\dollars X$ in A is higher than the ROI of investing $\dollars X$ in B?
+
+4. Is the effect of the new shiny thing stable over time?
+
+5. What is the effect of pitching X to a client?
+
+6. What is the effect of adopting X for a client?
+
+7. What kinds of customers are affected more/less after a new launch?
+
+]
+---
+
+## Challenges
+
+.large[
+
+1. Do we have a valid counterfactual?
+ + Spillovers
+ 
+ + Heterogeneity
+ 
+ + General equilibrium effects
+ 
+ + Long term vs short term effects
+ 
+2. Communicating our findings in a clear and actionable way
+
+]
+
+---
+
+class: center, middle, inverse
+
+# The status quo
+
+```{r extras, echo=FALSE, message=FALSE, warning = FALSE}
+library(xaringanthemer)
+library(xaringanExtra)
+library(svglite)
+knitr::opts_chunk$set(
+  dev.args = list(png  = list(type = "cairo")),
+  dpi = 300,
+  out.width = '90%', 
+  out.height = '500px'
+)
+
+use_logo(
+  image_url = "https://ignacio.martinez.fyi/logos/econometrics.svg",
+  exclude_class = NULL, 
+  link_url = "https://ignacio.martinez.fyi"
+)
+
+use_tile_view()
+
+use_webcam()
+
+use_clipboard()
+
+use_fit_screen()
+
+use_share_again()
+style_share_again(share_buttons = "none")
+
+style_xaringan(
+  inverse_background_color = "#4285F4",
+  title_slide_background_color = "#4285F4",
+  text_slide_number_color = "#BDC1C6",
+  text_slide_number_font_size = "12pt",
+  link_color = "#DB4437",
+  text_font_google = google_font("Roboto"),
+  header_font_google = google_font("Roboto")
+)
+
+extra_css <- list(
+  ".left-column" = list("float" = "left",
+                        "width" = "30%;"),
+  ".right-column" = list("float" = "right",
+                        "width" = "65%;"),
+  ".large" = list("font-size" = "130%"),
+  ".small" = list("font-size" = "75%"),
+  ".orange" = list("color" = "#FF4500"),
+  ".purple" = list("color" = "#4B0082"),
+  ".grey" = list("color" = "#C0C0C0"),
+  ".black" = list("color" = "#000000"),
+  ".red" = list("color" = "#DB4437"),
+  ".blue" = list("color" = "#4285F4")
+)
+
+style_extra_css(css = extra_css, outfile = "custom.css")
+```
+
+---
+
+## The Null Hyphotesis Ritual <sup>*</sup>
+
+.blockquote[
+1. Set up a statistical null hypothesis of "no mean difference."
+
+2. Use 5% for rejecting the null. 
+
+3. Always perform this procedure.
+]
+
+
+.footnote[
+\* [Gigerenzer, G., Krauss, S., & Vitouch, O. (2004). The null ritual. The Sage handbook of quantitative methodology for the social sciences, 391-408.](http://www.onemol.org.uk/Gigerenzer-2004.pdf)
+
+]
+
+---
+
+### The problem with p-values
+
+.smaller[
+* The p-value is not the probability that the impact is zero.
+
+* The p-value cannot answer most business relevant questions (the probability that the pilot moved the needle).
+
+* A p-value of 0.05 does not imply 95% probability that the pilot worked.
+
+* A correct interpretation of statistically significant p<0.05 does not imply 95% probability that the pilot moved the needle in a meaningful way.
+
+* A **correct** interpretation of a statistically significant finding:
+
+> When .red[the true effect is zero], there is a 5% chance that  .blue[the impact estimate is statistically significant (p < 0.05).]
+
+
+* An **incorrect** interpretation:
+
+> When .blue[the impact estimate is statistically significant (p < 0.05)] there is a 
+5% chance that .red[the true effect is zero.]
+
+  
+* A statistically significant finding can have the wrong magnitude, or even sign.
+]
+
+
+
+???
+Stress how ridiculous sharp nulls are. The true effect is exactly zero!
+
+1. [Wasserstein, R. L., & Lazar, N. A. (2016). The ASA statement on p-values: context, process, and purpose. The American Statistician, 70(2), 129-133.](https://amstat.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#.Vt2XIOaE2MN)
+
+2. [Gelman, A., & Carlin, J. (2014). Beyond power calculations: Assessing type S (sign) and type M (magnitude) errors. Perspectives on Psychological Science, 9(6), 641-651.](https://journals.sagepub.com/doi/full/10.1177/1745691614551642)
+
+---
+
+### Confidence intervals are often misterpreted too
+
+* **Correct** interpretation:
+
+> A particular procedure, when used repeatedly across a series of hyptothetical data sets, yields intervals that contain the true parameter value 95% of the cases. The key is that the CIs do not provide a statement about the parameter as it relates to the particular sample at hand.
+
+* **Incorrect** interpretations:
+
+>1. The probability that the true mean is greater than 0 is at
+least 95%.
+2. The probability that the true mean equals 0 is smaller than
+5%.
+3. The “null hypothesis” that the true mean equals 0 is likely
+to be incorrect.
+4. There is a 95% probability that the true mean lies between
+0.1 and 0.4.
+5. We can be 95% confident that the true mean lies between
+0.1 and 0.4.
+6. If we were to repeat the experiment over and over, then
+95% of the time the true mean falls between 0.1 and 0.4.
+
+???
+[Hoekstra, R., Morey, R. D., Rouder, J. N., & Wagenmakers, E. J. (2014). Robust misinterpretation of confidence intervals. Psychonomic bulletin & review, 21(5), 1157-1164.](https://ejwagenmakers.com/inpress/HoekstraEtAlPBR.pdf)
+
+---
+
+# An alternative framework
+
+.large[
+1. What is the business decision that we are trying to inform?
+  + What is the outcome that we are trying to improve?
+  
+  + How are we going to measure that outcome? 
+
+2. What are the relevant questions we should be asking to inform that decision?
+
+3. What are the possible answers to those questions, and the actions that decision makers would take in each case?
+
+4. What are the different alternatives we have available to answer those questions? 
+  + What are the pros and cons of each of those? 
+  
+  + How much uncertainty are we willing to tolerate?
+
+5. What is the best way of communicating what we have learned?
+]
+
+---
+
+# The Bayesian approach
+
+.large[
+* Bayesian statistics is a method that allows you to use data to reallocate credibility across possibilities.
+]
+
+--
+
+.large[
+* In general, before doing a study we know that there are only three possibilities:
+   + The intervention will meaningfully improve the outcome we care about.
+   
+   + The intervention will have no meaningful impact on the outcome we care about.
+   
+   + The intervention will meaningfully hurt the outcome we care about.
+]   
+
+--
+
+.large[
+* This approach estimates the probability of each of this outcomes using the data we have available.
+]
+
+--
+
+.large[
+* These probabilities can be used to inform decisions.
+]
+
+
+---
+
+class: center, middle, inverse
+
+# A simple example
+
+---
+
+## Set-up
+
+.left-column[
+* Imagine you want to decide whether or not to kill a product
+
+* You would like to keep the product if, and only if, 
+ the effect of this product on the outcome of interest is at least .red[0.1]. 
+ 
+* In order to inform this decision, you ran a well designed pilot. 
+]
+
+.right-column[
+
+```{r fake_data, echo=TRUE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(broom)
+library(rstan)
+seed <- 9782
+set.seed(seed)
+N  <- 200
+
+fake_data <- tibble(
+  x = rnorm(n = N, mean = 0, sd = 1),
+  t = rbinom(n = N, size = 1, prob = 0.5),
+  e = rnorm(n = N, mean = 0, sd = 0.4),
+  seed = seed
+  ) %>% 
+  mutate(y = 0.6*x + 0.02*t + e) #<<
+```
+
+]
+
+---
+
+## Status-quo
+
+
+.pull-left[
+
+```{r}
+lm1 <- lm(data = fake_data, formula = y ~ x + t) %>% 
+  tidy(., conf.int=T, conf.level=0.95) %>% 
+  filter(term=="t") 
+
+
+plot <- ggplot(data = lm1, aes(y=estimate, x= term)) +
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high)) +
+  geom_hline(yintercept = 0.01, linetype = "dashed", color = "red") + 
+  geom_hline(yintercept = 0, linetype = "dotted", color = "blue") + 
+  scale_y_continuous(breaks = seq(-0.2, 0.2, by = 0.02)) +
+  theme_bw(base_size = 18) +
+  xlab("") + 
+  ylab("Treatment Effect") + 
+  theme(
+  axis.text.x = element_blank(),
+  axis.ticks.x = element_blank())
+```
+
+]
+
+.pull-right[
+
+```{r echo=FALSE}
+plot
+```
+
+]
+
+---
+
+### Bayesian approach
+
+```{stan output.var='model1', echo = FALSE}
+data{
+  int N;
+  vector[N] y;
+  vector[N] x;
+  vector[N] t;
+}
+
+parameters{
+  real alpha;
+  real beta;
+  real tau;
+  real<lower=0> sigma;
+}
+
+model{
+  alpha ~ std_normal();
+  beta ~ std_normal();
+  tau ~ normal(0.01, 0.05); // std_normal();
+  sigma ~ std_normal();
+  y ~ normal(alpha + beta * x + tau * t, sigma);
+}
+
+```
+
+<center>
+
+```{r bayesian, echo = FALSE, , out.height="150%", out.width="60%"}
+stan_data <- list(N = nrow(fake_data),
+                  y= fake_data$y,
+                  x = fake_data$x,
+                  t = fake_data$t)
+
+fit1 <- sampling(model1, refresh = 0, data = stan_data, seed=1982)
+
+tau <- as.data.frame(fit1, pars='tau') 
+
+b1 <- vizdraws::vizdraws(prior = "N(0.01, 0.05)", 
+                         posterior = tau$tau, 
+                         MME = 0.01, xlim = c(-0.5,0.5), 
+                         font_scale = 1.5,
+                         display_mode_name = TRUE
+                         )
+
+b1
+```
+
+</center>
+
+---
+
+class: center, middle, inverse
+background-image: url("./bruno.webp")
+
+# We should talk about ~~Bruno~~ priors
+
+---
+
+## Priors
+
+.large[
+
+* Priors can be very useful
+
+* Flat priors are, generally, a really bad idea
+
+* Be transparent about your priors
+
+* Run prior sensitivity analysis
+
+]
+
+.footnote[
+\* [Gelman's Prior Choice Recommendations](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations)
+]
+
+---
+
+class: center, middle, inverse
+
+# Conclusions
+
+---
+
+## Take-home messages
+
+.large[
+* Data does not speak for itself. Our job is to speak on its behalf.
+
+* Know your audience, and use that when summarizing your findings.
+
+* If we don't answer a business question directly, 
+ decision-makers can be misguided by our analysis.
+ 
+* Point estimates, confidence intervals, and p-values are 
+  not always the best way of summarizing findings
+ 
+* Do not be afraid of using informative priors.
+
+* It is rare that we can make data driven decisions without some degree of uncertainty. We have to think in bets.
+]
+
+---
+
+class: center, middle, inverse
+
+# Questions?
+
+---
+
+# References
+
+* [Chandler, J. J., Martinez, I., Finucane, M. M., Terziev, J. G., & Resch, A. M. (2020). Speaking on data’s behalf: What researchers say and how audiences choose. Evaluation Review, 44(4), 325-353.](https://drive.google.com/file/d/1KAOGG_KgiSpwylO8VvJT8lTUIDslPuzk/view?usp=share_link)
+
+* [Gelman, A., & Carlin, J. (2014). Beyond power calculations: Assessing type S (sign) and type M (magnitude) errors. Perspectives on Psychological Science, 9(6), 641-651.](https://journals.sagepub.com/doi/full/10.1177/1745691614551642)
+
+* [Gigerenzer, G., Krauss, S., & Vitouch, O. (2004). The null ritual. The Sage handbook of quantitative methodology for the social sciences, 391-408.](http://www.onemol.org.uk/Gigerenzer-2004.pdf)
+
+* [Hoekstra, R., Morey, R. D., Rouder, J. N., & Wagenmakers, E. J. (2014). Robust misinterpretation of confidence intervals. Psychonomic bulletin & review, 21(5), 1157-1164.](https://ejwagenmakers.com/inpress/HoekstraEtAlPBR.pdf)
+
+* [Wasserstein, R. L., & Lazar, N. A. (2016). The ASA statement on p-values: context, process, and purpose. The American Statistician, 70(2), 129-133.](https://amstat.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#.Vt2XIOaE2MN)
