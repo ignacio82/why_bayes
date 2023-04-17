@@ -18,6 +18,35 @@ output:
 
 class: inverse, center, middle
 
+```{r setup, echo=FALSE, message=FALSE}
+library(xaringanExtra)
+use_tachyons()
+style_share_again(share_buttons = "all")
+```
+
+```{r metathis, echo=FALSE}
+
+meta() %>%
+  meta_social(
+    title = "Bayesian Causal Inference for Data Driven Businesses",
+    description = paste(
+      "Bayesian Causal Inference for Data Driven Businesses.",
+      "Bay Area Tech Economics Seminar Series."
+    ),
+    url = "https://whybayes.martinez.fyi/why_bayes.html",
+    image = "https://whybayes.martinez.fyi/why_bayes.html/social-card.png",
+    image_alt = paste(
+      "Bayesian Causal Inference for Data Driven Businesses.", 
+      "Bay Area Tech Economics Seminar Series."
+    ),
+    og_type = "website",
+    og_author = "Ignacio Martinez",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@_ignacio82",
+    twitter_site = "@_ignacio82"
+  )
+```
+
 
 # Bayesian Causal Inference for Data Driven Businesses
 ## A Bayesian framework for decision making 
@@ -25,6 +54,16 @@ class: inverse, center, middle
 ### [whybayes.martinez.fyi](https://whybayes.martinez.fyi)
 #### Bay Area Tech Economics Seminar Series
 #### 2023/04/20
+
+
+---
+
+class: center, middle, inverse
+
+# Disclaimer: 
+
+### I am speaking on my own behalf and not on behalf of  Google or Alphabet.
+
 
 ---
 
@@ -41,6 +80,8 @@ class: center, middle, inverse
 
 <center>
 ```{r echo=FALSE, fig.align = 'center', out.height="150%", out.width="65%"}
+use_tachyons()
+
 knitr::include_url("https://www.mentimeter.com/app/presentation/blzmj791umda1w3tynjr8kr5m77cyaje")
 ```
 </center>
@@ -54,7 +95,7 @@ knitr::include_url("https://www.mentimeter.com/app/presentation/blzmj791umda1w3t
 2. I convince you that:
   + The lure of incredible certitude is a big problem
   
-  + Decision-makers should"think in bets"
+  + Decision-makers should "think in bets"
   
   + "Data-scientists"  need to spend a lot more time asking questions before touching any data
   
@@ -75,32 +116,63 @@ class: center, middle, inverse
 
 ## The lure of incredible certitude
 
-.large[
-* The tendency to express great certainty about findings, even when there is a great deal of uncertainty.
-]
-
---
-
-.large[
-* Strong findings are more likely to lead to good outcomes (publications, promotions, bonus, reputation, etc)
-]
-
---
-
-.large[
-* Can lead to policymakers making decisions based on false or misleading information
-]
---
-
-.large[
-* Can discourage pursuing important lines of inquiry that do not have clear-cut answers
-]
-
-.footnote[
-\* [Manski, C. F. (2020). The lure of incredible certitude. Economics & Philosophy, 36(2), 216-245.](https://www.cambridge.org/core/journals/economics-and-philosophy/article/abs/lure-of-incredible-certitude/A1F09783377B05F20B83543CD40C7639)
-]
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+A common perception among economists who act as consultants is that the public is either unwilling or unable to cope with uncertainty. Hence, they argue that pragmatism dictates provision of point predictions and estimates, even though they may not be credible. 
+.tr[
+— Charles F. Manski,  <a href="https://www.nber.org/papers/w24905.pdf" target="_blank">The Lure of Incredible Certitude (2018)</a></span></div> 
+]]
 
 ---
+
+# The Null Hypothesis Ritual
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+1. Set up a statistical null hypothesis of "no mean difference" or "zero correlation." Don't specify the predictions of your research hypothesis or of any alternative
+substantive hypotheses.
+2. Use 5% as a convention for rejecting the null. If significant, accept your research hypothesis.
+3. Always perform this procedure.
+.tr[
+— Gigerenzer et al.,  <a href="https://www.researchgate.net/publication/241372934_The_Null_Ritual_What_You_Always_Wanted_to_Know_About_Significance_Testing_but_Were_Afraid_to_Ask" target="_blank">The Null Ritual (2004)</a></span></div> 
+]]
+
+--
+
+.bg-washed-red.b--dark-red.ba.bw2.br3.shadow-5.ph4.mt5[
+Scientific conclusions and business or policy decisions
+should not be based only on whether a p-value passes
+a specific threshold.
+.tr[
+— Wasserstein & Lazar,  <a href="https://www.tandfonline.com/doi/pdf/10.1080/00031305.2016.1154108?needAccess=true" target="_blank">ASA Statement on Statistical Significance and P-Values (2016)</a></span></div> 
+]]
+
+---
+
+# In Praise of Confidence Intervals
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+Most empirical papers in economics focus on two aspects of their results: whether the estimates are statistically significantly different from zero and the interpretation of the point estimates. This focus obscures important information about the implications of the results for economically interesting hypotheses about values of the parameters other than zero, and in some cases, about the strength of the evidence against values of zero. This limitation can be overcome by reporting confidence intervals for papers' main estimates and discussing their economic interpretation.
+.tr[
+— David Romer,  <a href="https://www.aeaweb.org/articles?id=10.1257/pandp.20201059" target="_blank">In Praise of Confidence Intervals (2020)</a></span></div> 
+]]
+
+---
+
+# Statistical Significance, p-Values, and the Reporting of Uncertainty
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+Although I do not endorse a ban on the reporting of p-values, I do agree that
+over the years, and in some disciplines more than other, p-values and statistical
+significance have been overemphasized. In many cases, the p-value or the measure of
+statistical significance is not the relevant output from an analysis of a dataset. Therefore, its prominence in the abstracts of many empirical papers is misplaced. It would
+be preferable if reporting standards emphasized confidence intervals (as Romer 2020
+suggests) or standard errors, and, even better, Bayesian posterior intervals.
+.tr[
+— Guido Imbens ,  <a href="https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157" target="_blank">Statistical Significance, p-Values, and the Reporting of Uncertainty (2021)</a></span></div> 
+]]
+
+---
+
+
 
 ## Thinking in bets
 
@@ -186,7 +258,6 @@ class: center, middle, inverse
 
 ```{r extras, echo=FALSE, message=FALSE, warning = FALSE}
 library(xaringanthemer)
-library(xaringanExtra)
 library(svglite)
 knitr::opts_chunk$set(
   dev.args = list(png  = list(type = "cairo")),
@@ -576,3 +647,5 @@ class: center, middle, inverse
 * [Hoekstra, R., Morey, R. D., Rouder, J. N., & Wagenmakers, E. J. (2014). Robust misinterpretation of confidence intervals. Psychonomic bulletin & review, 21(5), 1157-1164.](https://ejwagenmakers.com/inpress/HoekstraEtAlPBR.pdf)
 
 * [Wasserstein, R. L., & Lazar, N. A. (2016). The ASA statement on p-values: context, process, and purpose. The American Statistician, 70(2), 129-133.](https://amstat.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#.Vt2XIOaE2MN)
+
+*[Imbens, G. W. (2021). Statistical significance, p-values, and the reporting of uncertainty. Journal of Economic Perspectives, 35(3), 157-74.](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157)
