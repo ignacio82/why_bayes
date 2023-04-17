@@ -4,7 +4,7 @@ LABEL maintainer="Ignacio Martinez <martinezig@google.com>"
 RUN apt-get update -qq \
  && apt-get install -y \
     pandoc \
-    r-cran-rmarkdown \    
+    r-cran-rmarkdown \
     r-cran-svglite \
     r-cran-dplyr \
     r-cran-ggplot2 \
@@ -14,9 +14,10 @@ RUN apt-get update -qq \
   remotes \
   vizdraws \
   xaringanthemer \
+  metathis \
  && installGithub.r \
   gadenbuie/xaringanExtra \
-  yihui/xaringan 
+  yihui/xaringan
 
 
 

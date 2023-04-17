@@ -25,8 +25,8 @@ style_share_again(share_buttons = "all")
 ```
 
 ```{r metathis, echo=FALSE}
-
-meta() %>%
+library(metathis)
+meta() |>
   meta_social(
     title = "Bayesian Causal Inference for Data Driven Businesses",
     description = paste(
@@ -99,9 +99,9 @@ knitr::include_url("https://www.mentimeter.com/app/presentation/blzmj791umda1w3t
   
   + "Data-scientists"  need to spend a lot more time asking questions before touching any data
   
-  + "Data-scientists"  should make sure that decision-makers understand that quality of evidence is a continuous, and there is not such thing as a free lunch.
+  + "Data-scientists"  should make sure that decision-makers understand that quality of evidence is a continuum, and there is no such thing as a free lunch.
   
-  + The Bayesian framework is underutilized, and we should not be afraid of using informative priors.
+  + The Bayesian framework is underutilized, and we should not be afraid of using informative priors
   
   + The quality of your presentation is as important as the quality of your analysis
 
@@ -177,16 +177,16 @@ suggests) or standard errors, and, even better, Bayesian posterior intervals.
 ## Thinking in bets
 
 .large[
-* We should all think of our decisions as bets
+* We should all think of our decisions as bets.
 
 * We should focus on improving our odds of success, rather than trying to predict the future with certainty.
 
-* Beware of hindsight bias, confirmation bias, and anchoring bias
+* Beware of hindsight bias, confirmation bias, and anchoring bias.
 
 ]
 
 .footnote[
-\* [Duke, A. (2019). Thinking in bets: Making smarter decisions when you don't have all the facts. Penguin.](https://www.google.com/books/edition/Thinking_in_Bets/CI-RDwAAQBAJ?hl=en&gbpv=1&dq=+%22thinking+in+bets%22++by+Annie+Duke+&pg=PA1&printsec=frontcover)
+\* [Duke, A. (2019). Thinking in bets: Making smarter decisions when you don't have all the facts.](https://www.google.com/books/edition/Thinking_in_Bets/CI-RDwAAQBAJ?hl=en&gbpv=1&dq=+%22thinking+in+bets%22++by+Annie+Duke+&pg=PA1&printsec=frontcover)
 ]
 
 ???
@@ -216,7 +216,7 @@ $$\newcommand\dollars{\$}$$
 
 .large[
 
-1. Does a new launch meaningfully moves the needle? 
+1. Does a new launch meaningfully move the needle? 
 
 2. Is the ROI of a given investment high enough to justify that investment?
 
@@ -246,7 +246,7 @@ $$\newcommand\dollars{\$}$$
  
  + Long term vs short term effects
  
-2. Communicating our findings in a clear and actionable way
+2. Communicating our findings in a clear and actionable way.
 
 ]
 
@@ -588,13 +588,13 @@ background-image: url("./bruno.webp")
 
 .large[
 
-* Priors can be very useful
+* Priors can be very useful.
 
-* Flat priors are, generally, a really bad idea
+* Flat priors are, generally, a really bad idea.
 
-* Be transparent about your priors
+* Be transparent about your priors.
 
-* Run prior sensitivity analysis
+* Run prior sensitivity analysis.
 
 ]
 
@@ -621,7 +621,7 @@ class: center, middle, inverse
  decision-makers can be misguided by our analysis.
  
 * Point estimates, confidence intervals, and p-values are 
-  not always the best way of summarizing findings
+  not always the best way of summarizing findings.
  
 * Do not be afraid of using informative priors.
 
@@ -648,4 +648,4 @@ class: center, middle, inverse
 
 * [Wasserstein, R. L., & Lazar, N. A. (2016). The ASA statement on p-values: context, process, and purpose. The American Statistician, 70(2), 129-133.](https://amstat.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#.Vt2XIOaE2MN)
 
-*[Imbens, G. W. (2021). Statistical significance, p-values, and the reporting of uncertainty. Journal of Economic Perspectives, 35(3), 157-74.](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157)
+* [Imbens, G. W. (2021). Statistical significance, p-values, and the reporting of uncertainty. Journal of Economic Perspectives, 35(3), 157-74.](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157)
