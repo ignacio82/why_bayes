@@ -45,6 +45,60 @@ meta() |>
     twitter_creator = "@_ignacio82",
     twitter_site = "@_ignacio82"
   )
+
+library(xaringanthemer)
+library(svglite)
+knitr::opts_chunk$set(
+  dev.args = list(png  = list(type = "cairo")),
+  dpi = 300,
+  out.width = '90%', 
+  out.height = '500px'
+)
+
+use_logo(
+  image_url = "https://ignacio.martinez.fyi/logos/econometrics.svg",
+  exclude_class = NULL, 
+  link_url = "https://ignacio.martinez.fyi"
+)
+
+use_tile_view()
+
+use_webcam()
+
+use_clipboard()
+
+use_fit_screen()
+
+use_share_again()
+style_share_again(share_buttons = "none")
+
+style_xaringan(
+  inverse_background_color = "#4285F4",
+  title_slide_background_color = "#4285F4",
+  text_slide_number_color = "#BDC1C6",
+  text_slide_number_font_size = "12pt",
+  link_color = "#DB4437",
+  text_font_google = google_font("Roboto"),
+  header_font_google = google_font("Roboto")
+)
+
+extra_css <- list(
+  ".left-column" = list("float" = "left",
+                        "width" = "30%;"),
+  ".right-column" = list("float" = "right",
+                        "width" = "65%;"),
+  ".large" = list("font-size" = "130%"),
+  ".small" = list("font-size" = "75%"),
+  ".orange" = list("color" = "#FF4500"),
+  ".purple" = list("color" = "#4B0082"),
+  ".grey" = list("color" = "#C0C0C0"),
+  ".black" = list("color" = "#000000"),
+  ".red" = list("color" = "#DB4437"),
+  ".blue" = list("color" = "#4285F4")
+)
+
+style_extra_css(css = extra_css, outfile = "custom.css")
+
 ```
 
 
@@ -114,100 +168,6 @@ class: center, middle, inverse
 
 ---
 
-## The lure of incredible certitude
-
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-A common perception among economists who act as consultants is that the public is either unwilling or unable to cope with uncertainty. Hence, they argue that pragmatism dictates provision of point predictions and estimates, even though they may not be credible. 
-.tr[
-— Charles F. Manski,  <a href="https://www.nber.org/papers/w24905.pdf" target="_blank">The Lure of Incredible Certitude (2018)</a></span></div> 
-]]
-
----
-
-# The Null Hypothesis Ritual
-
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-1. Set up a statistical null hypothesis of "no mean difference" or "zero correlation." Don't specify the predictions of your research hypothesis or of any alternative
-substantive hypotheses.
-2. Use 5% as a convention for rejecting the null. If significant, accept your research hypothesis.
-3. Always perform this procedure.
-.tr[
-— Gigerenzer et al.,  <a href="https://www.researchgate.net/publication/241372934_The_Null_Ritual_What_You_Always_Wanted_to_Know_About_Significance_Testing_but_Were_Afraid_to_Ask" target="_blank">The Null Ritual (2004)</a></span></div> 
-]]
-
---
-
-.bg-washed-red.b--dark-red.ba.bw2.br3.shadow-5.ph4.mt5[
-Scientific conclusions and business or policy decisions
-should not be based only on whether a p-value passes
-a specific threshold.
-.tr[
-— Wasserstein & Lazar,  <a href="https://www.tandfonline.com/doi/pdf/10.1080/00031305.2016.1154108?needAccess=true" target="_blank">ASA Statement on Statistical Significance and P-Values (2016)</a></span></div> 
-]]
-
----
-
-# In Praise of Confidence Intervals
-
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-Most empirical papers in economics focus on two aspects of their results: whether the estimates are statistically significantly different from zero and the interpretation of the point estimates. This focus obscures important information about the implications of the results for economically interesting hypotheses about values of the parameters other than zero, and in some cases, about the strength of the evidence against values of zero. This limitation can be overcome by reporting confidence intervals for papers' main estimates and discussing their economic interpretation.
-.tr[
-— David Romer,  <a href="https://www.aeaweb.org/articles?id=10.1257/pandp.20201059" target="_blank">In Praise of Confidence Intervals (2020)</a></span></div> 
-]]
-
----
-
-# Statistical Significance, p-Values, and the Reporting of Uncertainty
-
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-Although I do not endorse a ban on the reporting of p-values, I do agree that
-over the years, and in some disciplines more than other, p-values and statistical
-significance have been overemphasized. In many cases, the p-value or the measure of
-statistical significance is not the relevant output from an analysis of a dataset. Therefore, its prominence in the abstracts of many empirical papers is misplaced. It would
-be preferable if reporting standards emphasized confidence intervals (as Romer 2020
-suggests) or standard errors, and, even better, Bayesian posterior intervals.
-.tr[
-— Guido Imbens ,  <a href="https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157" target="_blank">Statistical Significance, p-Values, and the Reporting of Uncertainty (2021)</a></span></div> 
-]]
-
----
-
-
-
-## Thinking in bets
-
-.large[
-* We should all think of our decisions as bets.
-
-* We should focus on improving our odds of success, rather than trying to predict the future with certainty.
-
-* Beware of hindsight bias, confirmation bias, and anchoring bias.
-
-]
-
-.footnote[
-\* [Duke, A. (2019). Thinking in bets: Making smarter decisions when you don't have all the facts.](https://www.google.com/books/edition/Thinking_in_Bets/CI-RDwAAQBAJ?hl=en&gbpv=1&dq=+%22thinking+in+bets%22++by+Annie+Duke+&pg=PA1&printsec=frontcover)
-]
-
-???
-
-* Hindsight bias is the tendency to see past events as having been more predictable than they actually were. This bias can lead us to overestimate our ability to predict the future.
-
-* Confirmation bias is the tendency to seek out information that confirms our existing beliefs, and to ignore or discount information that contradicts our beliefs. This bias can lead us to make poor decisions, because we are not considering all of the available information.
-
-* Anchoring bias is the tendency to rely too heavily on the first piece of information we receive, and to use that information as a starting point for making decisions. This bias can lead us to make poor decisions, because we are not considering all of the available information.
-
-**Here are some examples of each bias:**
-
-* Hindsight bias: After a major sporting event, people often say that they "knew" the winning team would win. However, in reality, they were just as likely to have predicted the losing team would win.
-
-* Confirmation bias: A person who believes that vaccines cause autism may only seek out information that supports that belief, and may ignore or discount information that contradicts it.
-
-* Anchoring bias: A person who is asked to estimate the value of a car may be influenced by the first price they hear, even if that price is far from the actual value of the car.
-
-
----
-
 ## Some questions that people asks us
 
 <!---- This is a macro for Mathjax ----->
@@ -256,78 +216,38 @@ class: center, middle, inverse
 
 # The status quo
 
-```{r extras, echo=FALSE, message=FALSE, warning = FALSE}
-library(xaringanthemer)
-library(svglite)
-knitr::opts_chunk$set(
-  dev.args = list(png  = list(type = "cairo")),
-  dpi = 300,
-  out.width = '90%', 
-  out.height = '500px'
-)
+---
 
-use_logo(
-  image_url = "https://ignacio.martinez.fyi/logos/econometrics.svg",
-  exclude_class = NULL, 
-  link_url = "https://ignacio.martinez.fyi"
-)
+# The lure of incredible certitude
 
-use_tile_view()
-
-use_webcam()
-
-use_clipboard()
-
-use_fit_screen()
-
-use_share_again()
-style_share_again(share_buttons = "none")
-
-style_xaringan(
-  inverse_background_color = "#4285F4",
-  title_slide_background_color = "#4285F4",
-  text_slide_number_color = "#BDC1C6",
-  text_slide_number_font_size = "12pt",
-  link_color = "#DB4437",
-  text_font_google = google_font("Roboto"),
-  header_font_google = google_font("Roboto")
-)
-
-extra_css <- list(
-  ".left-column" = list("float" = "left",
-                        "width" = "30%;"),
-  ".right-column" = list("float" = "right",
-                        "width" = "65%;"),
-  ".large" = list("font-size" = "130%"),
-  ".small" = list("font-size" = "75%"),
-  ".orange" = list("color" = "#FF4500"),
-  ".purple" = list("color" = "#4B0082"),
-  ".grey" = list("color" = "#C0C0C0"),
-  ".black" = list("color" = "#000000"),
-  ".red" = list("color" = "#DB4437"),
-  ".blue" = list("color" = "#4285F4")
-)
-
-style_extra_css(css = extra_css, outfile = "custom.css")
-```
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+A common perception among economists who act as consultants is that the public is either unwilling or unable to cope with uncertainty. Hence, they argue that pragmatism dictates provision of point predictions and estimates, even though they may not be credible. 
+.tr[
+— Charles F. Manski,  <a href="https://www.nber.org/papers/w24905.pdf" target="_blank">The Lure of Incredible Certitude (2018)</a></span></div> 
+]]
 
 ---
 
-## The Null Hyphotesis Ritual <sup>*</sup>
+# The Null Hypothesis Ritual
 
-.blockquote[
-1. Set up a statistical null hypothesis of "no mean difference."
-
-2. Use 5% for rejecting the null. 
-
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+1. Set up a statistical null hypothesis of "no mean difference" or "zero correlation." Don't specify the predictions of your research hypothesis or of any alternative
+substantive hypotheses.
+2. Use 5% as a convention for rejecting the null. If significant, accept your research hypothesis.
 3. Always perform this procedure.
-]
+.tr[
+— Gigerenzer et al.,  <a href="https://www.researchgate.net/publication/241372934_The_Null_Ritual_What_You_Always_Wanted_to_Know_About_Significance_Testing_but_Were_Afraid_to_Ask" target="_blank">The Null Ritual (2004)</a></span></div> 
+]]
 
+--
 
-.footnote[
-\* [Gigerenzer, G., Krauss, S., & Vitouch, O. (2004). The null ritual. The Sage handbook of quantitative methodology for the social sciences, 391-408.](http://www.onemol.org.uk/Gigerenzer-2004.pdf)
-
-]
+.bg-washed-red.b--dark-red.ba.bw2.br3.shadow-5.ph4.mt5[
+Scientific conclusions and business or policy decisions
+should not be based only on whether a p-value passes
+a specific threshold.
+.tr[
+— Wasserstein & Lazar,  <a href="https://www.tandfonline.com/doi/pdf/10.1080/00031305.2016.1154108?needAccess=true" target="_blank">ASA Statement on Statistical Significance and P-Values (2016)</a></span></div> 
+]]
 
 ---
 
@@ -367,7 +287,32 @@ Stress how ridiculous sharp nulls are. The true effect is exactly zero!
 
 ---
 
-### Confidence intervals are often misterpreted too
+# In Praise of Confidence Intervals
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+Most empirical papers in economics focus on two aspects of their results: whether the estimates are statistically significantly different from zero and the interpretation of the point estimates. This focus obscures important information about the implications of the results for economically interesting hypotheses about values of the parameters other than zero, and in some cases, about the strength of the evidence against values of zero. This limitation can be overcome by reporting confidence intervals for papers' main estimates and discussing their economic interpretation.
+.tr[
+— David Romer,  <a href="https://www.aeaweb.org/articles?id=10.1257/pandp.20201059" target="_blank">In Praise of Confidence Intervals (2020)</a></span></div> 
+]]
+
+---
+
+# Statistical Significance, p-Values, and the Reporting of Uncertainty
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+Although I do not endorse a ban on the reporting of p-values, I do agree that
+over the years, and in some disciplines more than other, p-values and statistical
+significance have been overemphasized. In many cases, the p-value or the measure of
+statistical significance is not the relevant output from an analysis of a dataset. Therefore, its prominence in the abstracts of many empirical papers is misplaced. It would
+be preferable if reporting standards emphasized confidence intervals (as Romer 2020
+suggests) or standard errors, and, even better, Bayesian posterior intervals.
+.tr[
+— Guido Imbens ,  <a href="https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157" target="_blank">Statistical Significance, p-Values, and the Reporting of Uncertainty (2021)</a></span></div> 
+]]
+
+---
+
+### Confidence intervals are often misinterpreted too
 
 * **Correct** interpretation:
 
@@ -393,7 +338,48 @@ to be incorrect.
 
 ---
 
-# An alternative framework
+class: center, middle, inverse
+
+# What I believe we should be doing
+
+---
+
+## Thinking in bets
+
+.large[
+* We should all think of our decisions as bets.
+
+* We should focus on improving our odds of success, rather than trying to predict the future with certainty.
+
+* Beware of hindsight bias, confirmation bias, and anchoring bias.
+
+]
+
+.footnote[
+\* [Duke, A. (2019). Thinking in bets: Making smarter decisions when you don't have all the facts.](https://www.google.com/books/edition/Thinking_in_Bets/CI-RDwAAQBAJ?hl=en&gbpv=1&dq=+%22thinking+in+bets%22++by+Annie+Duke+&pg=PA1&printsec=frontcover)
+]
+
+???
+
+* Hindsight bias is the tendency to see past events as having been more predictable than they actually were. This bias can lead us to overestimate our ability to predict the future.
+
+* Confirmation bias is the tendency to seek out information that confirms our existing beliefs, and to ignore or discount information that contradicts our beliefs. This bias can lead us to make poor decisions, because we are not considering all of the available information.
+
+* Anchoring bias is the tendency to rely too heavily on the first piece of information we receive, and to use that information as a starting point for making decisions. This bias can lead us to make poor decisions, because we are not considering all of the available information.
+
+**Here are some examples of each bias:**
+
+* Hindsight bias: After a major sporting event, people often say that they "knew" the winning team would win. However, in reality, they were just as likely to have predicted the losing team would win.
+
+* Confirmation bias: A person who believes that vaccines cause autism may only seek out information that supports that belief, and may ignore or discount information that contradicts it.
+
+* Anchoring bias: A person who is asked to estimate the value of a car may be influenced by the first price they hear, even if that price is far from the actual value of the car.
+
+---
+
+
+
+# Questions you need to know the answer to
 
 .large[
 1. What is the business decision that we are trying to inform?
