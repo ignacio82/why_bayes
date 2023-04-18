@@ -20,6 +20,7 @@ class: inverse, center, middle
 
 ```{r setup, echo=FALSE, message=FALSE}
 library(xaringanExtra)
+use_panelset()
 use_tachyons()
 style_share_again(share_buttons = "all")
 ```
@@ -94,7 +95,8 @@ extra_css <- list(
   ".grey" = list("color" = "#C0C0C0"),
   ".black" = list("color" = "#000000"),
   ".red" = list("color" = "#DB4437"),
-  ".blue" = list("color" = "#4285F4")
+  ".blue" = list("color" = "#4285F4"),
+  ".whitesmoke" = list("color" = "#DCDCDC")
 )
 
 style_extra_css(css = extra_css, outfile = "custom.css")
@@ -619,6 +621,8 @@ class: center, middle, inverse
 class: center, middle, inverse
 
 # Questions?
+## [martinezig@google.com](mailto:MartinezIg@google.com)
+### Slides: <a href="https://whybayes.martinez.fyi" target="_blank">https://whybayes.martinez.fyi</a>
 
 ---
 
@@ -635,3 +639,235 @@ class: center, middle, inverse
 * [Wasserstein, R. L., & Lazar, N. A. (2016). The ASA statement on p-values: context, process, and purpose. The American Statistician, 70(2), 129-133.](https://amstat.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#.Vt2XIOaE2MN)
 
 * [Imbens, G. W. (2021). Statistical significance, p-values, and the reporting of uncertainty. Journal of Economic Perspectives, 35(3), 157-74.](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157)
+
+
+---
+
+class: inverse, center, middle
+
+
+# Appendix  
+
+---
+
+class: inverse, center, middle
+
+
+## Asking One Question and Answering Another:
+### When decisions and statistical analysis are not aligned.
+#### [Ignacio Martinez<sup>1</sup>](https://ignacio.martinez.fyi), 
+#### Jesse Chandler<sup>2</sup>, 
+#### Daniel Thal<sup>2</sup>
+[1] [The Chief Economist's Team at Google](https://ignacio.martinez.fyi/).
+
+[2] [Mathematica](https://mathematica.org/).
+
+---
+
+name: the_experiment
+
+# The Experiment
+
+.panelset[
+.panel[.panel-name[The Basics]
+* **Our Question:** What is  the effect of presenting study results in different ways on choices and confidence?
+
+* **Our Data:** We asked U.S. adults to make a decision about whether or not to adopt a fictional education technology based on results from a study using synthetic data.
+
+* **Participants saw findings depicted in one of four ways:** 
+  + a traditional frequentist test for an effect different from zero, 
+  + a Bayesian analysis that calculates the probability that the effect is greater than zero, 
+  + a frequentist analysis that estimate whether an effect is of a minimum meaningful size, and
+  + a Bayesian analysis that estimate whether an effect is of a minimum meaningful size.
+]
+.panel[.panel-name[Participants]
+* Convenience sample recruited from Amazon Mechanical Turk. 
+* Participants were eligible for inclusion if:
+   + they were U.S. residents 
+   + who had successfully completed at least 95% of the tasks they had previously submitted through the platform. 
+* Excluded 84 participants who failed 3 or more comprehension checks.
+* Median age 35.29 years (SD = 10.30).
+* 57% had at least a 4-year college degree.
+* n = 612 responses.
+]
+]
+
+
+
+---
+
+# What Participants Saw
+
+.panelset[
+.panel[.panel-name[Common Text]
+
+Imagine that you are the curriculum coordinator for a school district with about 20 schools in it. .whitesmoke[As a part of your job, you have to decide which programs should or should not be adopted.]
+
+.whitesmoke[One option that your district is considering is a somewhat expensive [math/english] after-school program.] The school board thinks that it would be worth the cost if the program increases student achievement on a standardized [math/english] test, on average, by at least 0.2 standard deviations .whitesmoke[(standard deviation is a measure of variation in test scores: roughly two thirds of students will score between +/- 1 standard deviations from the average test score).] 
+ 
+A neighboring district recently published a report, in which they describe a test of the new program. The report described an experiment in which 100 students were selected. .whitesmoke[Half received the [math/english] program for one school year (the treatment group) and the other half did not (the control group). The district then compared end of year standardized test scores between the two groups.] 
+
+.whitesmoke[The report states that on average, the students that used the new [math/english] program scored higher on the year-end tests than the students in the control group. However the report also states that because only 100 students were involved in the experiment, at least some of the estimated difference in test scores between the treatment and control groups could be due to random chance.]
+
+]
+
+.panel[.panel-name[Bayesian MME = 0.2, text]
+
+.whitesmoke[To help readers make sense of the reported findings, the researchers reported the probability that the true program effect is large enough to be worth the cost. This probability is calculated drawing on two sources of information: (1) the difference in mean outcomes observed in the researchers’ study and (2) a literature review the researchers conducted regarding how common it is for educational interventions to have effects of varying sizes.
+ 
+Based on a cost-benefit analysis like the one performed by your district, the researchers concluded that an effect of 0.2 standard deviations is large enough to warrant adopting the program. The researchers report that prior evidence from their literature review found that: 42% of educational interventions will increase achievement by at least 0.20 standard deviations, 16% have no meaningful effect, and 42% reduce achievement by at least 0.20 standard deviations.]
+ 
+Combining the data from their experiment with the prior evidence, the researchers conclude that there is a: 28% probability that the after-school program increased achievement by at least 0.20 standard deviations, 72% probability that it had no meaningful effect, and 0% probability that it decreased achievement by at least 0.20 standard deviations. The following visualization shows you the prior evidence and probability that the program had a meaningful effect based on the prior evidence and the data from the researchers’ new study. .whitesmoke[By clicking on "posterior", you can switch between probabilities based only on the prior evidence and probabilities based on both the prior evidence and study data. By clicking on the distribution icon, you can switch between the discretized and continuous version of the possible outcomes.]
+
+]
+
+.panel[.panel-name[Bayesian MME = 0.2, viz]
+
+```{r mme2, echo=FALSE, out.width = '70%', out.height = '350px', fig.align='center', out.extra='style="border: none; display:block; margin:auto;"'}
+knitr::include_url(url = "https://ignacio.martinez.fyi/ROPE/bayesian_data1_mme2.html") 
+``` 
+
+]
+
+.panel[.panel-name[Bayesian MME = 0, text]
+
+.whitesmoke[Data from the experiment were analyzed using Bayesian statistics, a method that allows researchers to reallocate credibility across possibilities. Before looking at the data, the researchers define two possible answers to their question. The after-school program either increases achievement, or it will decrease achievement. The researchers state that prior to conducting the experiment, their beliefs were as follows: 	50% probability that the after-school program will increase achievement, and 	50% probability that it will reduce achievement.] 
+
+The data from the experiment suggest that they should update their beliefs to: 	98% probability that the after-school program will increase achievement, and 	2% probability that it will reduce achievement.
+
+The following visualization shows you the researchers' prior beliefs and how these beliefs should be updated based on the data. .whitesmoke[By clicking on "posterior", you can switch between their beliefs before and after looking at the data. By clicking on the distribution icon, you can switch between the discretized and continuous version of the possible outcomes.]
+
+]
+
+.panel[.panel-name[Bayesian MME = 0, viz]
+
+```{r mme0, echo=FALSE, out.width = '70%', out.height = '350px', fig.align='center', out.extra='style="border: none; display:block; margin:auto;"'}
+knitr::include_url(url = "https://ignacio.martinez.fyi/ROPE/bayesian_data1_mme0.html") 
+``` 
+
+]
+
+.panel[.panel-name[Frequentist CI, text]
+
+.whitesmoke[To help readers make sense of the reported findings, the researchers reported their findings in two different ways. First, they reported the probability of obtaining an effect at least as large as the one observed in the sample data, assuming that there is in fact no true difference between groups. This probability is called a "p-value." Second, the researchers reported an interval around the reported effect size called a confidence interval. If a large number of studies were conducted, the confidence intervals from those studies would contain the true effect of the program a specified percentage of the time (for example 95%).] Regression analysis of the data from the experiment showed that the point estimate for the effect of the program is 0.159. This is statistically significant (p-value = 0.042) with a 95% confidence interval from 0.006 to 0.312.
+
+The following visualization shows the point estimate and its associated confidence interval:
+
+]
+
+.panel[.panel-name[Frequentist CI, viz]
+
+```{r ci, echo=FALSE, out.width = '70%', out.height = '350px', fig.align='center'}
+knitr::include_graphics("https://ignacio.martinez.fyi/ROPE/round2/round_2_frequentist_point_data1.png") 
+``` 
+
+]
+
+.panel[.panel-name[Frequentist TOST, text]
+
+.whitesmoke[To help readers make sense of the reported findings, the researchers reported their findings in three different ways. First, they reported the probability of obtaining an effect at least as large as the one observed in the sample data, assuming that there is in fact no true difference between groups. This probability is called a "p-value." Second, they reported the probability (p-value) of obtaining an effect at least as small (close to zero) as the one observed in the sample data, assuming that there is in fact a meaningful difference between groups. In this case, the researcher defined a meaningful difference as .2 standard deviations. 	Third, the researchers reported an interval around the reported effect size called a confidence interval. If a large number of studies were conducted, the confidence intervals from those studies would contain the true effect of the program a specified percentage of the time (for example 95%).]
+
+Regression analysis of the data from the experiment showed that the point estimate for the effect of the program is 0.159. This is statistically different from zero (p-value = 0.042) with a 95% confidence interval from 0.006 to 0.312. It is not statistically smaller than 0.2 (p-value = 0.299).
+
+The following visualization shows the point estimate and its associated confidence interval:
+
+]
+
+.panel[.panel-name[TOST, viz]
+
+```{r tost, echo=FALSE, out.width = '70%', out.height = '400px', fig.align='center'}
+knitr::include_graphics("https://ignacio.martinez.fyi/ROPE/round2/round_2_frequentist_tost_data1.png") 
+```
+
+]
+
+]
+
+# 
+
+
+
+---
+
+# Impacts on Choices
+
+```{r, echo=FALSE, out.width = '70%', out.height = '400px', fig.align = 'center', message = FALSE, warning = FALSE}
+library(dplyr)
+library(gt)
+library(stringr)
+
+
+
+tibble(
+  ' ' = c("Frequentist", "Bayesian"),
+  `Test against null` = c("61%@a~", "84%@b~"),
+  `Test against MME` = c("57%@a,c~", "42%@c~")
+) %>%
+  gt() %>%
+  tab_source_note(
+    md(
+      "**Note:** Proportions with different subscripts have at least a 95% probability of differing by at least 10 percentage points."
+    )
+  ) %>%
+  text_transform(
+    locations = cells_body(),
+    fn = function(x) {
+      str_replace_all(x,
+                      pattern = "@",
+                      replacement = "<sub>") %>%
+        str_replace_all("~",
+                        "</sub>")
+    }
+  ) %>% 
+  tab_header(
+    title = md("**Proportion of participants who recommended switching programs**")
+  )
+```
+
+
+???
+
+* People were more likely to recommend switching to the new program when presented with a Bayesian analysis with MME equal to zero (84%) than only a traditional frequentist nil-hypothesis test (61%). This replicates findings from <a href="https://journals.sagepub.com/doi/abs/10.1177/0193841X19834968?journalCode=erxb" target="_blank">Chandler et al 2019</a>.
+
+* People were less likely to recommend switching to the new program when presented with a Bayesian test that included the MME (42%) than when presented with a frequentist test that used TOST to compare the data to the MME (57%).
+
+---
+
+# Impacts on Confidence
+
+```{r, echo=FALSE, out.width = '70%', out.height = '400px', fig.align = 'center', message = FALSE, warning = FALSE}
+
+tibble(
+  ' ' = c("Frequentist", "Bayesian"),
+  `Test against null` = c("6.9 (2.0)@a~", "8.0(1.7)@b~"),
+  `Test against MME` = c("6.8(2.2)@b~", "7.3 (1.9)@a,b~")
+) %>%
+  gt() %>%
+  tab_source_note(
+    md(
+      "**Note:** Standard deviations are in parentheses. Proportions with
+different subscripts have at least a 95% probability of differing by at
+least half a scale point (or 5%)"
+    )
+  ) %>%
+  text_transform(
+    locations = cells_body(),
+    fn = function(x) {
+      str_replace_all(x,
+                      pattern = "@",
+                      replacement = "<sub>") %>%
+        str_replace_all("~",
+                        "</sub>")
+    }
+  ) %>% 
+  tab_header(
+    title = md("**Confidence in the recommendation to switch programs or
+maintain the current program**")
+  )
+```
+
+???
+
+* People making a decision based on a Bayesian analysis with MME equal to zero were more confident in their decision (M = 8.0, SD = 1.7) than those making a decision based on a traditional frequentist test (M = 6.9, SD = 2.0). There is a 98% probability that there is a difference between these conditions of at least 5 percentage points (0.5 scale points) but only an 11% probability that the effect exceeds a full point. This replicates the findings from <a href="https://journals.sagepub.com/doi/abs/10.1177/0193841X19834968?journalCode=erxb" target="_blank">Chandler et al 2019</a>.
+
+* When comparing TOST to the Bayesian framing with an MME, we estimate a 70% probability that the TOST framing lowers confidence by at least 5 percentage points.

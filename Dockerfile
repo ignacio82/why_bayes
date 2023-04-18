@@ -10,6 +10,8 @@ RUN apt-get update -qq \
     r-cran-ggplot2 \
     r-cran-broom \
     r-cran-rstan \
+    r-cran-gt \
+    r-cran-stringr \
  && install.r \
   remotes \
   vizdraws \
