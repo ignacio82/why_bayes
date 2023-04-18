@@ -541,7 +541,7 @@ model{
 
 <center>
 
-```{r bayesian, echo = FALSE, , out.height="150%", out.width="60%"}
+```{r bayesian, echo = FALSE, out.width = '225px', out.height = '175px', fig.align='center', out.extra='style="border: none; display:block; margin:auto;"'}
 stan_data <- list(N = nrow(fake_data),
                   y= fake_data$y,
                   x = fake_data$x,
