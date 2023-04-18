@@ -297,21 +297,6 @@ Most empirical papers in economics focus on two aspects of their results: whethe
 
 ---
 
-# Statistical Significance, p-Values, and the Reporting of Uncertainty
-
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-Although I do not endorse a ban on the reporting of p-values, I do agree that
-over the years, and in some disciplines more than other, p-values and statistical
-significance have been overemphasized. In many cases, the p-value or the measure of
-statistical significance is not the relevant output from an analysis of a dataset. Therefore, its prominence in the abstracts of many empirical papers is misplaced. It would
-be preferable if reporting standards emphasized confidence intervals (as Romer 2020
-suggests) or standard errors, and, even better, Bayesian posterior intervals.
-.tr[
-— Guido Imbens ,  <a href="https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157" target="_blank">Statistical Significance, p-Values, and the Reporting of Uncertainty (2021)</a></span></div> 
-]]
-
----
-
 ### Confidence intervals are often misinterpreted too
 
 * **Correct** interpretation:
@@ -335,6 +320,21 @@ to be incorrect.
 
 ???
 [Hoekstra, R., Morey, R. D., Rouder, J. N., & Wagenmakers, E. J. (2014). Robust misinterpretation of confidence intervals. Psychonomic bulletin & review, 21(5), 1157-1164.](https://ejwagenmakers.com/inpress/HoekstraEtAlPBR.pdf)
+
+---
+
+# Statistical Significance, p-Values, and the Reporting of Uncertainty
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+Although I do not endorse a ban on the reporting of p-values, I do agree that
+over the years, and in some disciplines more than other, p-values and statistical
+significance have been overemphasized. In many cases, the p-value or the measure of
+statistical significance is not the relevant output from an analysis of a dataset. Therefore, its prominence in the abstracts of many empirical papers is misplaced. It would
+be preferable if reporting standards emphasized confidence intervals (as Romer 2020
+suggests) or standard errors, and, even better, Bayesian posterior intervals.
+.tr[
+— Guido Imbens ,  <a href="https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.35.3.157" target="_blank">Statistical Significance, p-Values, and the Reporting of Uncertainty (2021)</a></span></div> 
+]]
 
 ---
 
